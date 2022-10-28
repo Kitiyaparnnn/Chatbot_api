@@ -17,9 +17,9 @@ export class AppController {
     //   req.ชั้นปี = null;
     // }
     
-    console.log(year);
+    // console.log(year);
     
-    // return this.appService.checkNull(year);
+    return this.appService.checkNull(year);
   }
 
 }

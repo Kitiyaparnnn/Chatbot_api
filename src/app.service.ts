@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { YearDto } from './model/validator/year.dto';
 
 @Injectable()
 export class AppService {
@@ -6,8 +7,18 @@ export class AppService {
     return 'Hello World!';
   }
 
-  checkNull(req: Record<string, any>){
-    if(req.ชั้นปี == null) return { isNull: 0 };
-    else return { isNull: 1 };
+  checkNull(year: YearDto){
+    try { 
+      // console.log(dto.year);
+      const nYear = Number(year);
+      const ans = isNaN(nYear) ? 0 : nYear;
+
+      return { year: ans }
+
+    } catch(err) {
+      console.log("err");
+      
+    }
+    // if(year.)return {isNumber: 0};
   }
 }
