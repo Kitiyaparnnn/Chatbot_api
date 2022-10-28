@@ -10,16 +10,16 @@ export class AppController {
     return this.appService.getHello();
   }
   
-  @Get("/is-null")
-  checkNull(@Body() req: Record<string, any>){
+  @Get("/is-null/:year")
+  checkNull(@Param("year") year: any){
     
     // if(req.ชั้นปี === "") {
     //   req.ชั้นปี = null;
     // }
     
-    console.log(req);
+    console.log(year);
     
-    return this.appService.checkNull(req);
+    // return this.appService.checkNull(year);
   }
 
 }
