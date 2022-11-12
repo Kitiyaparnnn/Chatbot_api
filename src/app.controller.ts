@@ -11,15 +11,8 @@ export class AppController {
   }
   
   @Get("/is-null/:year")
-  checkNull(@Param("year") year: any){
-    
-    // if(req.ชั้นปี === "") {
-    //   req.ชั้นปี = null;
-    // }
-    
-    // console.log(year);
-    
-    return this.appService.checkNull(year);
+  checkNumber(@Param("year") year: any){    
+    return this.appService.checkNumber(year);
   }
 
 }
