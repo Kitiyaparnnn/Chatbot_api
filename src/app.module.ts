@@ -1,13 +1,15 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Mongoose } from 'mongoose';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { CourseFeeModule } from './api/course-fee/course-fee.module';
+import env from './common/env.config';
 
 @Module({
-  // imports: [MongooseModule.forRoot('mongoose://link')],
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    MongooseModule.forRoot(env.DATABASE_URL),
+    CourseFeeModule
+  ],
+  controllers: [],
+  providers: [],
 })
+
 export class AppModule {}

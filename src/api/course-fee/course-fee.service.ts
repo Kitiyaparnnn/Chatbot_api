@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { YearDto } from './model/validator/year.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { CourseFee } from 'src/model/interface/course-fee.interface';
 
 @Injectable()
-export class AppService {
-  getHello(): string {
-    return 'Hello World!';
-  }
+export class CourseFeeService {
+  constructor(@InjectModel('course_fee') private courseFeeModel: Model<CourseFee>) {}
 
   changeToNumber(char: string){
      let nDic = new Map<string, number>(
@@ -56,4 +56,12 @@ export class AppService {
       
     }
   }
+
+  async getCourseFee() {
+    const test = { EE_reg: "3000", EE_sup: "1000", Major: "EE" };
+    const res = new this.courseFeeModel(test);
+    return await res.save()
+    // return await this.courseFeeModel.find({}).exec();
+  }
 }
+
