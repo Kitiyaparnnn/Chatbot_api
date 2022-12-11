@@ -6,6 +6,10 @@ import { CourseFee } from 'src/model/interface/course-fee.interface';
 @Injectable()
 export class CourseFeeService {
   constructor(@InjectModel('course_fee') private courseFeeModel: Model<CourseFee>) {}
+  
+  getHello(): string {
+    return 'Hello World!';
+  }
 
   changeToNumber(char: string){
      let nDic = new Map<string, number>(
