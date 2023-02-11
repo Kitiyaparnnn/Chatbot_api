@@ -38,7 +38,7 @@ export class TireService {
        }
        else ans = "ยังรอดอยู่จ้า 💖"
        
-       return { ans: ans }
+       return { ans: ans , sum: g.toFixed(2)}
  
      } catch(err) {
        console.log("err");
