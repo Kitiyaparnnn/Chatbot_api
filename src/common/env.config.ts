@@ -1,14 +1,14 @@
-import nonNull from "non-null";
-import { config } from "dotenv";
+// import nonNull from "non-null";
+// import { config } from "dotenv";
 
-config();
+// config();
 
-const env = {
-  DATABASE_URL: grant("DATABASE_URL"),
-} as const;
+// const env = {
+//   DATABASE_URL: grant("DATABASE_URL"),
+// } as const;
 
-function grant(envKey: string) {
-  return nonNull(process.env[envKey], `${envKey} is missing from env.`);
-}
+// function grant(envKey: string) {
+//   return nonNull(process.env[envKey], `${envKey} is missing from env.`);
+// }
 
-export default env;
+// export default env;

@@ -5,10 +5,10 @@ import { CourseFeeService } from './course-fee.service';
 export class CourseFeeController {
   constructor(private readonly courseFeeService: CourseFeeService) {}
   
-  @Get()
-  async getCourseFee() {
-    return await this.courseFeeService.getCourseFee();
-  }
+  // @Get()
+  // async getCourseFee() {
+  //   return await this.courseFeeService.getCourseFee();
+  // }
 
   @Get("/test")
   getHello(): string {
