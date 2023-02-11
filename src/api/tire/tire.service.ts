@@ -14,13 +14,14 @@ export class TireService {
   checkConYear1(grade: any){
    let ans = ""
     try { 
-      const g = Number(grade);
+        
+      var g = Number(grade);
       if(g<1.5){
         ans = "ไทร์จ้า😭"
       }
       else ans = "ยังรอดอยู่จ้า 💖"
-      
-      return { ans: ans }
+    
+      return { ans: ans , sum: g.toFixed(2) }
 
     } catch(err) {
       console.log("err");
