@@ -64,20 +64,17 @@ export class TireService {
           // else ans = "ยังไม่ไทร์นะ 😀😀"
           break;
         case 3:
+          pre_grade = (1.75*(credit1+credit2) - (credit1*grade)) / credit2
           if(grade < 1.75) ans = 31
-          else{
-            pre_grade = (1.75*(credit1+credit2) - (credit1*grade)) / credit2
-            ans = 30
-          }
+          else ans = 30
           // if(grade<1.75) ans ="ถ้าต่ำกว่า 1.75 ติดกันมาแล้ว 2 เทอม โดนรีไทร์นะ 🥺🥺🥺"
           // else ans = "ยังไม่ไทร์นะ 😀😀😀"
           break;
         case 4:
+          pre_grade = (1.75*(credit1+credit2) - (credit1*grade)) / credit2
           if(grade < 1.75) ans = 41
-          else{
-            pre_grade = (1.75*(credit1+credit2) - (credit1*grade)) / credit2
-            ans = 40
-          }
+          else ans = 40
+          break;
         default:
           pre_grade = (2.00*(credit1+credit2) - (credit1*grade)) / credit2
           ans = 240
