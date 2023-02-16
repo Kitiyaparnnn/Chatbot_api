@@ -46,29 +46,46 @@ export class TireService {
      }
    }
 
-   checkCon(year:number,grade: number){
-    let ans = ""
+   checkCon(year:number,grade: number,credit1: number,credit2: number){
+    let ans = 0
+    let pre_grade = 0
      try { 
-    //    const g = Number(grade);
        switch (year) {
         case 1:
-            if(grade<1.5) ans ="โดนรีไทร์นะ 🥺"
-            else ans = "ยังไม่ไทร์นะ 😀"
-            break;
+          pre_grade = (1.5*(credit1+credit2) - (credit1*grade)) / credit2
+          ans = 1
+          // if(grade<1.5) ans ="โดนรีไทร์นะ 🥺"
+          // else ans = "ยังไม่ไทร์นะ 😀"
+          break;
         case 2:
-            if(grade<1.75) ans ="โดนรีไทร์นะ 🥺🥺"
-            else ans = "ยังไม่ไทร์นะ 😀😀"
-            break;
+          pre_grade = (1.75*(credit1+credit2) - (credit1*grade)) / credit2
+          ans = 2
+          // if(grade<1.75) ans ="โดนรีไทร์นะ 🥺🥺"
+          // else ans = "ยังไม่ไทร์นะ 😀😀"
+          break;
         case 3:
-            if(grade<1.75) ans ="ถ้าต่ำกว่า 1.75 ติดกันมาแล้ว 2 เทอม โดนรีไทร์นะ 🥺🥺🥺"
-            else ans = "ยังไม่ไทร์นะ 😀😀😀"
-            break;
+          if(grade < 1.75) ans = 31
+          else{
+            pre_grade = (1.75*(credit1+credit2) - (credit1*grade)) / credit2
+            ans = 30
+          }
+          // if(grade<1.75) ans ="ถ้าต่ำกว่า 1.75 ติดกันมาแล้ว 2 เทอม โดนรีไทร์นะ 🥺🥺🥺"
+          // else ans = "ยังไม่ไทร์นะ 😀😀😀"
+          break;
+        case 4:
+          if(grade < 1.75) ans = 41
+          else{
+            pre_grade = (1.75*(credit1+credit2) - (credit1*grade)) / credit2
+            ans = 40
+          }
         default:
-            if(grade<2.00) ans = "ไทร์จ้า"
-            else ans = "ยังไม่ไทร์ แต่อย่าให้ต่ำกว่า 2.00"
-            break;
+          pre_grade = (2.00*(credit1+credit2) - (credit1*grade)) / credit2
+          ans = 240
+          // if(grade<2.00) ans = "ไทร์จ้า"
+          // else ans = "ยังไม่ไทร์ แต่อย่าให้ต่ำกว่า 2.00"
+          break;
        }
-       return { ans: ans, year :year, grade: grade}
+       return { ans: ans, pre_grade: pre_grade.toFixed(2)}
  
      } catch(err) {
        console.log("err");

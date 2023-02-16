@@ -17,7 +17,10 @@ export class TireController {
   }
 
   @Get("/con?")
-  async checkCon(@Query("year") year: number,@Query("grade") grade:number){    
-    return this.TireService.checkCon(Number(year),Number(grade));
+  async checkCon(@Query("year") year: number,
+                @Query("grade") grade:number,
+                @Query("credit1") credit1:number,
+                @Query("credit2") credit2:number){    
+    return this.TireService.checkCon(Number(year),Number(grade),Number(credit1),Number(credit2));
   }
 }
