@@ -81,7 +81,7 @@ export class TireService {
           pre_credit = d
         }
         else if(a >= 240 && b < 4.00 && e > 4.00) tag = 99
-        else if(a < 240 && grade < 1.75){
+        else if(a < 240 && grade < 1.75 && c <= 4.00){
           tag = 10
           pre_grade = c
         } 
