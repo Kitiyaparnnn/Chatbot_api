@@ -47,42 +47,58 @@ export class TireService {
    }
 
    checkCon(year:number,grade: number,credit1: number,credit2: number){
-    let ans = 0
+    let tag = 0
     let pre_grade = 0
-     try { 
-       switch (year) {
-        case 1:
-          pre_grade = (1.5*(credit1+credit2) - (credit1*grade)) / credit2
-          ans = 1
-          // if(grade<1.5) ans ="โดนรีไทร์นะ 🥺"
-          // else ans = "ยังไม่ไทร์นะ 😀"
-          break;
-        case 2:
-          pre_grade = (1.75*(credit1+credit2) - (credit1*grade)) / credit2
-          ans = 2
-          // if(grade<1.75) ans ="โดนรีไทร์นะ 🥺🥺"
-          // else ans = "ยังไม่ไทร์นะ 😀😀"
-          break;
-        case 3:
-          pre_grade = (1.75*(credit1+credit2) - (credit1*grade)) / credit2
-          if(grade < 1.75) ans = 31
-          else ans = 30
-          // if(grade<1.75) ans ="ถ้าต่ำกว่า 1.75 ติดกันมาแล้ว 2 เทอม โดนรีไทร์นะ 🥺🥺🥺"
-          // else ans = "ยังไม่ไทร์นะ 😀😀😀"
-          break;
-        case 4:
-          pre_grade = (1.75*(credit1+credit2) - (credit1*grade)) / credit2
-          if(grade < 1.75) ans = 41
-          else ans = 40
-          break;
-        default:
-          pre_grade = (2.00*(credit1+credit2) - (credit1*grade)) / credit2
-          ans = 240
-          // if(grade<2.00) ans = "ไทร์จ้า"
-          // else ans = "ยังไม่ไทร์ แต่อย่าให้ต่ำกว่า 2.00"
-          break;
-       }
-       return { ans: ans, pre_grade: pre_grade.toFixed(2)}
+    let pre_credit = 0
+
+    const a = credit1 + credit2
+
+    try { 
+      if(year == 1){
+        pre_grade = (1.5*(a) - (credit1*grade)) / credit2
+        if(pre_grade <= 4.00)tag = 10
+        else tag = 11
+      }
+      else if(year == 2){
+        pre_grade = (1.75*(a) - (credit1*grade)) / credit2
+        if(pre_grade <= 4.00) tag = 10
+        else tag = 11
+      }
+      else if(year >= 3 && year <=7){
+        const b = (2.00*(a) - (credit1*grade))/credit2
+        const c = (1.75*(a) - (credit1*grade))/credit2
+        const d = 239 - credit1
+        const e = (2.00*(credit1 + d + 22) - (credit1*grade))/(d + 22)
+
+        if(credit1 >= 240) tag = 0
+        else if(a >= 240 && b <= 4.00){
+          tag = 302
+          pre_grade = b
+        }
+        else if(a >= 240 && b > 4.00 && e <= 4.00){
+          tag = 310
+          pre_grade = e
+          pre_credit = d
+        }
+        else if(a >= 240 && b < 4.00 && e > 4.00) tag = 99
+        else if(a < 240 && grade < 1.75){
+          tag = 10
+          pre_grade = c
+        } 
+        else if(a < 240 && grade >= 1.75) tag = 300
+        else tag = 555
+      }
+      else {
+        pre_grade = (2.00*(a) - (credit1*grade))/credit2
+
+        if(credit1 >= 240) tag = 0
+        else if(pre_grade <= 4.00) tag = 80
+        else if(pre_grade > 4.00) tag = 99
+        else tag = 555
+      }
+
+      
+       return { tag: tag, pre_grade: pre_grade.toFixed(2), pre_credit:pre_credit}
  
      } catch(err) {
        console.log("err");
