@@ -23,4 +23,10 @@ export class TireController {
                 @Query("credit2") credit2:number){    
     return this.TireService.checkCon(Number(year),Number(grade),Number(credit1),Number(credit2));
   }
+
+  @Get("/getData?")
+  async getData(@Query("year") year: number,
+                @Query("std") std: String){    
+    return await this.TireService.getData(Number(year),std);
+  }
 }
