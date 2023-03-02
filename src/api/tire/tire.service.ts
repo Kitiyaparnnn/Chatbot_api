@@ -64,13 +64,15 @@ export class TireService {
     try { 
       if(year == 1){
         pre_grade = (1.5*(a) - (credit1*grade)) / credit2
-        if(pre_grade <= 4.00)tag = 10
-        else tag = 11
+        if(pre_grade <= 4.00 && pre_grade >0)tag = 10
+        else if(pre_grade > 4.00) tag = 11
+        else tag = 300
       }
       else if(year == 2){
         pre_grade = (1.75*(a) - (credit1*grade)) / credit2
-        if(pre_grade <= 4.00) tag = 10
-        else tag = 11
+        if(pre_grade <= 4.00 && pre_grade >0) tag = 10
+        else if(pre_grade > 4.00) tag = 11
+        else tag = 300
       }
       else if(year >= 3 && year <=7){
         const b = (2.00*(a) - (credit1*grade))/credit2
