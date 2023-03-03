@@ -123,17 +123,33 @@ export class TireService {
     });
 
     const path = `https://reg.eng.cmu.ac.th/reg/plan_detail/plan_data_term.php?student_id=${std}`
+    try{ 
+      const data = await this.httpService.get(path,{httpsAgent: agent}).toPromise();
+      const text = data.data.replace(/(<([^>]+)>)/ig, '')
+      const clean = text.replace(/&nbsp;/gi,'').split(/\r?\n/)  
+      let clean2 = clean.map(e => e.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,''));
+      let clean3 = clean2.filter(e => e != '')
+      const key = clean3.indexOf('หมายเหตุ วิชาที่เกรดเป็นเครื่องหมาย')
+      const key2 = clean3.indexOf('ชื่อ - นามสกุล:')
+      let key3 = clean3.filter(e => e == 'ปีการศึกษา 2565')
 
-    const data = await this.httpService.get(path,{httpsAgent: agent}).toPromise();
-    const text = data.data.replace(/(<([^>]+)>)/ig, '')
-    const clean = text.replace(/&nbsp;/gi,'').split(/\r?\n/)  
-    let clean2 = clean.map(e => e.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,''));
-    let clean3 = clean2.filter(e => e != '')
-    const key = clean3.indexOf('หมายเหตุ วิชาที่เกรดเป็นเครื่องหมาย')
-    const d = [Number(clean3[key-3]),Number(clean3[key-2]),Number(clean3[key-1])]
-    console.log(d);
-    
-    return  this.checkCon(year,d[2],d[0],d[0]-d[1]);
+      let c265 = Number(clean3[key-12]);
+      let c165 = Number(clean3[key-2]);
+      let g = Number(clean3[key-1]);
+      const name = clean3[key2+1];
+
+      //config position depend on students year
+      if(c265 == null){
+          c265=0
+          c165=0
+          g=0
+      }else if(key3.length <= 1) c265 = Number(clean3[key-3])
+
+      return  {"name":name, "c265":c265, "c165":c165, "g":g};
+    }catch(err){
+      console.log("err");
+    }
+   
   }
 }
 
