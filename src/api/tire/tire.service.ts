@@ -136,13 +136,16 @@ export class TireService {
       let c265 = Number(clean3[key-12]);
       let c165 = Number(clean3[key-2]);
       let g = Number(clean3[key-1]);
-      const name = clean3[key2+1];
+      let name = clean3[key2+1];
+      console.log(name);
+      
 
       //config position depend on students year
-      if(c265 == null){
-          c265=0
-          c165=0
-          g=0
+      if(name == 'อาจารย์ที่ปรึกษา:'){
+          c265 = 0
+          c165 = 0
+          g = 0
+          name = 0
       }else if(key3.length <= 1) c265 = Number(clean3[key-3])
 
       return  {"name":name, "c265":c265, "c165":c165, "g":g};
