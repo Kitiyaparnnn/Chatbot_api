@@ -81,7 +81,7 @@ export class TireService {
         const e = (2.00*(credit1 + d + 22) - (credit1*grade))/(d + 22)
 
         if(credit1 >= 240) tag = 0
-        else if(a >= 240 && b <= 4.00){
+        else if(a >= 240 && b <= 4.00 && b > 0){
           tag = 302
           pre_grade = b
         }
