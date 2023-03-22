@@ -1,4 +1,4 @@
-# Chatbot for Education Service
+# Chatbot for Education Services
 
 This chatbot is developed with Botnoi Chatbot to assist staff in answering questions for Chiang Mai University Engineering students regarding tuition fees, expulsion, scholarships, expected graduation, credit checks, and honors only via LINE application. Students can add Line chatbots and start asking questions.
 
