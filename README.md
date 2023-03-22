@@ -6,7 +6,7 @@ API for this server is https://chatbotapi-production.up.railway.app/
 ## Git Clone
 
 ```bash
-$ git clone 
+$ git clone https://github.com/Kitiyaparnnn/Chatbot_api.git
 ```
 
 ## Installation
@@ -26,18 +26,5 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
 ```
 
